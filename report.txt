@@ -1,0 +1,54 @@
+
+
+
+tt <- with(d, t.test(DV ~ IV, var.equal = TRUE))
+tvalue <- tt$statistic %>% formatC(digits = 2, format = "f")
+if (tt$p.value < 0.0005) {
+    pvalue <- " < 0.001" 
+  } else { 
+    if (tt$p.value < 0.005)
+      pvalue <- paste0(" = ",tt$p.value %>% formatC(digits = 3, format = "f"))
+    else 
+      pvalue <- paste0(" = ",tt$p.value %>% formatC(digits = 2, format = "f")) 
+  }
+df <- tt$parameter
+
+
+This:
+
+On average, Group 2 (m = `r dd$Mean[1]`) scored significantly higher than Group 2 (m = `r dd$Mean[2]`), *t*(`r df`) = `r tvalue`, *p* < `r pvalue`.
+
+Becomes:
+
+On average, Group 2 (m = 10.31) scored significantly higher than Group 2 (m = 12.96), t(143) = -5.88, p < 0.001.
+
+
+
+t.report <- function(tt){
+  tvalue <- tt$statistic %>% formatC(digits = 2, format = "f")
+  pvalue <- tt$p.value %>% formatC(digits = 2, format = "f")
+  if (round(tt$parameter, 0) == tt$parameter) {
+    df <- tt$parameter
+  } else {
+    df <- formatC(digits = 2, format = "f")
+  }
+  if (tt$p.value < 0.0005) {
+    pvalue <- " < 0.001" 
+  } else { 
+    if (tt$p.value < 0.005) {
+      pvalue <- paste0(" = ",tt$p.value %>% formatC(digits = 3, format = "f"))
+    } else {
+      pvalue <- paste0(" = ",tt$p.value %>% formatC(digits = 2, format = "f"))
+    }
+    } 
+  paste0("*t*(",df,") = ",tvalue, ", *p*", pvalue)
+  }
+
+This:
+
+As seen in Table 1 and Figure 1, the mean of Group 2 is significantly higher than the mean of Group 2, `r t.report(tt)`.
+
+Becomes:
+
+As seen in Table 1 and Figure 1, the mean of Group 2 is significantly higher than the mean of Group 2, t(143) = -5.88, p < 0.001.
+

@@ -1,0 +1,29 @@
+
+An Introduction to Logistic Regression
+Writing up results
+Some tips:
+
+    First, present descriptive statistics in a table. Make it clear that the dependent variable is discrete (0, 1) and not continuous and that you will use logistic regression. Logistic regression is a standard statistical procedure so you don't (necessarily) need to write out the formula for it. You also (usually) don't need to justify that you are using Logit instead of the LP model or Probit (similar to Logit but based on the normal distribution [the tails are less fat]).
+
+        "The dependent variable which measures the willingness to take fishing trips at different costs is YES. YES is equal to 1 if the respondent would still take fishing trips ... and 0 otherwise. Since the dependent variable is discrete, the ordinary least squares regression can be used to fit a linear probability model. However, since the linear probability model is heteroskedastic and may predict probability values beyond the (0,1) range, the logistic regression model is used to estimate the factors which influence trip-taking behavior." 
+
+    Organize your results in a table (see Table 3) stating your dependent variable (dependent variable = YES) and state that these are "logistic regression results."
+        Present coefficient estimates, t-statistics (or Wald, whichever you prefer), and (at least the) model chi-square statistic for overall model fit.
+        If you are comparing several model specifications you should also present the % correct predictions and/or Pseudo-R2 statistics to evaluate model performance.
+        If you are comparing models with hypotheses about different blocks of coefficients or testing for structural breaks in the data, you could present the ending log-likelihood values. This will allow the reader to check your calculations. 
+
+    When describing the statistics in the tables, point out the highlights for the reader. What are the significant variables? Is the overall model statistically significant?
+
+        "The results from Model 1 indicate that anglers behave according to economic theory. As the costs of the trips increase, they are less likely to be willing to continue taking trips. The coefficient on the COST variable has a Wald statistic equal to 13.43 which is significant at the .01 level (99% confidence level) with a critical value of 6.635 [df=1]. The overall model is significant at the .01 level according to the Model chi-square statistic. The model predicts 61% of the responses correctly. The McFadden's R2 is .053." 
+
+    Which model is preferred?
+
+        "Model 2 includes two additional theoretically important independent variables: INCOME and CATCH. According to the likelihood ratio test statistic, Model 2 is superior to Model 1 in terms of overall model fit. The block chi-square statistic (note: see below) is significant at the .01 level (critical value = 9.21 [df=2]), the percentage of correct predictions increases by 6%, and the McFadden's-R2 value is almost 100% larger. The coefficient on the CATCH and INCOME variables are statistically significant at the .05 and .10 levels." 
+
+    You usually don't need to discuss the magnitude of the coefficients--just the sign (+ or -) and statistical significance. If you are doing "risk analysis" interpreting the coefficients with the odds ratio for some other reason, you might briefly describe what it is for an unfamiliar audience.
+
+        "The 'odds ratio' for the EMPLOYED coefficient is 3.96 with a 95% confidence interval of [1.23, 12.78]. This suggests that those who are employed are almost 4 times more likely to take trips than those who are unemployed." 
+
+    If your audience is unfamiliar with the extensions (beyond SPSS or SAS printouts, see below) to logistic regression, discuss the calculation of the statistics in an appendix or footnote or provide a citation. Always state the degrees of freedom for your likelihood-ratio (chi-square) tests (see above quote). 
+
+A short paper using the bass angler data can be found here. 
