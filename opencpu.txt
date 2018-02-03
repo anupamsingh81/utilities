@@ -1,0 +1,282 @@
+#using ajax in node js
+1. install jsdom-nocontextify , xml http request
+2.
+var $ = require('jquery')(require('jsdom-no-contextify').jsdom().parentWindow);
+
+// Support for Cross-domain request with using jQuery
+// See: http://garajeando.blogspot.jp/2012/06/avoiding-xmlhttprequest-problem-using.html
+var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+$.support.cors = true;
+$.ajaxSettings.xhr = function () {
+	return new XMLHttpRequest;
+}
+
+# example
+$.ajax({
+	url: 'http://example.com/',
+	type: 'GET',
+	success: function(data, status, jq_xhr) {
+		console.log(data);
+	},
+	error: function(jq_xhr, status, error_str) {
+		console.log(error_str);
+	}
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# opencpu json response
+
+
+var hightemp ;
+var clat =5 ;
+$.ajax({
+async: false,
+url: 'https://cloud.opencpu.org/ocpu/library/stats/R/rnorm',
+type: "POST",
+data: $.param({ n: clat}) ,
+dataType: "json",
+success: function(news) {
+hightemp = news;}
+});
+
+var hightemp1 = JSON.stringify(hightemp)
+
+(hightemp1)
+
+
+# opencpu response text
+
+# get response Text
+
+
+var ez = $.ajax({
+async: false,
+url: 'https://cloud.opencpu.org/ocpu/library/stats/R/rnorm',
+type: "POST",
+data: $.param({ n: clat}) ,
+dataType: "json"}).responseText;
+
+
+var key = $.ajax({
+async: false,
+url: 'https://cloud.opencpu.org/ocpu/library/stats/R/rnorm',
+type: "POST",
+data: $.param({ n: clat}) ,
+dataType: "json"}).getResponseHeader('X-ocpu-session')
+
+var x = [1,2,3,4,5,6,7,8] ;
+var y = [2,4,6,7,8,9,10,13] ;
+
+
+var key1 = $.ajax({
+async: false,
+url: 'https://cloud.opencpu.org/ocpu/library/graphics/R/plot/png',
+type: "POST",
+data: $.param({ x: x , y:y }) ,
+dataType: "json"}).getResponseHeader('X-ocpu-session')
+
+var key1 = $.ajax({
+async: false,
+url: 'https://cloud.opencpu.org/ocpu/library/graphics/R/plot/png',
+type: "POST",
+data: $.param({x:x , y:y }) ,
+dataType: "json"}).responseText
+
+
+
+var key = $.ajax({
+async: false,
+url: 'https://cloud.opencpu.org/ocpu/library/stats/R/rnorm',
+type: "POST",
+data: $.param({ n: clat , mean : m ,sd :s }) ,
+dataType: "json"}).responseText
+
+https://cloud.opencpu.org/ocpu/tmp/x0abeb7433d/plot
+
+
+var key1 = $.ajax({
+async: false,
+url: 'https://cloud.opencpu.org/ocpu/library/graphics/R/plot/png',
+type: "POST",
+data: $.param({df$x:x , df$y:y , data: data.frame(x,y) }) ,
+dataType: "json"}).responseText
+
+
+
+var key1 = $.ajax({
+async: false,
+url: 'https://cloud.opencpu.org/ocpu/library/stats/R/t.test',
+type: "POST",
+data: $.param({x:df$x , y:df$y , df:"data.frame(x=x,y=y)"}) ,
+dataType: "json"}).responseText
+
+
+
+var key1 = $.ajax({
+async: false,
+url: 'https://cloud.opencpu.org/ocpu/library/stats/R/sd',
+type: "POST",
+data: $.param({x:x}) ,
+dataType: "json"}).responseText
+
+
+var mydata = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
+
+
+var key1 = $.ajax({
+async: false,
+url: 'https://cloud.opencpu.org/ocpu/library/stats/R/sd',
+type: "POST",
+data: $.param({x: mydata}) ,
+dataType: "json"}).responseText
+
+
+var data1 = JSON.stringify(mydata)
+
+var key1 = $.ajax({
+async: false,
+url: 'https://cloud.opencpu.org/ocpu/library/stats/R/sd',
+type: "POST",
+data: $.param({x: data1}) ,
+dataType: "json"}).responseText
+
+https://cloud.opencpu.org//ocpu/tmp/x027a86476a/console
+
+# plot response text gives funny png to string output, get session key instead
+
+var key1 = $.ajax({
+async: false,
+url: 'https://cloud.opencpu.org/ocpu/library/graphics/R/hist',
+type: "POST",
+data: $.param({x:data1 }) ,
+dataType: "json"}).responseText
+
+https://cloud.opencpu.org//ocpu/tmp/x0700f9525d/graphics/1
+
+
+
+############
+plot in R
+
+
+var x = [1,2,3,4,5,6,7,8] ;
+var y = [2,4,6,7,8,9,10,13] ;
+
+
+
+var x1 = JSON.stringify(x)
+
+var y1 = JSON.stringify(y)
+
+
+
+var key1 = $.ajax({
+async: false,
+url: 'https://cloud.opencpu.org/ocpu/library/graphics/R/plot', // dont use plot/png here
+type: "POST",
+data: $.param({x:x1,y:y1 }) ,
+dataType: "json"}).getResponseHeader('X-ocpu-session')
+
+
+
+var urly = 'https://cloud.opencpu.org/ocpu/tmp/'+key1+'/graphics/1'
+
+
+var console = 'https://cloud.opencpu.org/ocpu/tmp/'+key1+'/console'
+
+
+
+
+
+######### t.test in R
+
+
+var x = [1,2,3,4,5,6,7,8] ;
+var y = [2,4,6,7,8,9,10,13] ;
+
+
+
+var x1 = JSON.stringify(x)
+
+var y1 = JSON.stringify(y)
+
+
+
+
+
+
+
+
+var key1 = $.ajax({
+async: false,
+url: 'https://cloud.opencpu.org/ocpu/library/stats/R/t.test',
+type: "POST",
+data: $.param({x:x1,y:y1 }) ,
+dataType: "json"}).getResponseHeader('X-ocpu-session')
+
+// DOnt use console as variable in js as it is a function use consoler etc whatever
+
+
+var consoler = 'https://cloud.opencpu.org/ocpu/tmp/'+key1+'/console'
+
+
+
+##ggplot in R
+
+var x1 = JSON.stringify(x)
+
+var y1 = JSON.stringify(y)
+
+var geom = ["point", "smooth"]
+
+geom1 = JSON.stringify(geom)
+
+var key2 = $.ajax({
+async: false,
+url: 'https://cloud.opencpu.org/ocpu/library/ggplot2/qplot',
+type: "POST",
+data: $.param({x:x1,y:y1,geom:geom1,data:"data.frame(x,y)" }) ,
+dataType: "json"}).getResponseHeader('X-ocpu-session')
+
+// DOnt use console as variable in js as it is a function use consoler etc whatever
+
+
+var consoler = 'https://cloud.opencpu.org/ocpu/tmp/'+key1+'/console'
+
+
+var key2 = $.ajax({
+async: false,
+url: 'https://cloud.opencpu.org/ocpu/library/ggplot2::qplot', // Note ggplot2::qplot here , ggplot2/qplot doesnt work in packages 
+type: "POST",
+data: $.param({x:x1,y:y1,geom:geom1,data:"data.frame(x,y)" }) ,
+dataType: "json"}).getResponseHeader('X-ocpu-session')
+
+
+
+
+var consoler = 'https://cloud.opencpu.org/ocpu/tmp/'+key2+'/console'
+
+var ggplot = 'https://cloud.opencpu.org/ocpu/tmp/'+key2+'/graphics/1'
+
+
+
+
+
+

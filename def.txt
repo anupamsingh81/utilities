@@ -1,0 +1,40 @@
+
+
+
+
+
+ console.log( "I am a goo.txt".match(/\w{3,5}/) );
+[ 'goo', index: 7, input: 'I am a goo.txt' ]
+undefined
+
+
+> console.log( "I am a goo.txt".match(/\w\.txt/) ); match only word
+[ 'o.txt', index: 9, input: 'I am a goo.txt' ]
+undefined
+> console.log( "I am a goo.txt".match(/\w{0,}\.txt/) );
+[ 'goo.txt', index: 7, input: 'I am a goo.txt' ]
+undefined
+
+
+console.log( "I am a goo.txt".match(/\w+\.txt/) );
+
+
+xray('http://www.imdb.com/movies-in-theaters/', 'h4')(function(err, data) {
+  console.log(data) 
+})
+
+
+xray('http://www.imdb.com/movies-in-theaters/', '.overview-top', [{
+  title : 'h4 a',
+  outline : '.outline'
+
+ }]).write('resultm.json')
+
+
+xray('http://www.imdb.com/movies-in-theaters/', '.overview-top', [{
+  title : 'h4 a',
+  outline : '.outline' 
+}])(function (data){
+console.log(data.title)
+})
+
